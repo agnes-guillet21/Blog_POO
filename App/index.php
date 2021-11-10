@@ -14,5 +14,6 @@ $posts = $post->getListPost();
 
 //Affichage
 $title ="Accueil du blog";
-$template = "view/layout.phmtl";
-require ('view/home.phtml');
+$template = "view/home";
+
+require ('view/layout.phtml');
