@@ -1,0 +1,18 @@
+<?php
+use App\autoloader;
+use App\config\Connect;
+use App\Classes\PostManagerPOO;
+
+
+// faire appel a l autoloadeer pour le mettre en place
+require 'autoloader.php';
+App\Autoloader::register();
+
+
+$post = new PostManagerPOO();
+$posts = $post->getListPost();
+
+//Affichage
+$title ="Accueil du blog";
+$template = "view/layout.phmtl";
+require ('view/home.phtml');
