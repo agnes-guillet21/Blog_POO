@@ -1,0 +1,72 @@
+
+<main class="d-flex flex-column">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">Administration</li>
+            <li class="breadcrumb-item"><a href="admin.php">Gestion des articles</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Créer un nouvel article</li>
+        </ol>
+    </nav>
+
+    <div class="flex-grow-1 d-md-flex align-items-stretch">
+        <?php include 'admin_menu.phtml'; ?>
+        <section class="col-md-7 py-4 mx-auto">
+            <div>
+                <form action="add_post.php" method="post" class="col-md-7 py-4 mx-auto" novalidate>
+                        <fieldset>
+                            <legend class="text-center display-4 mb-5"> <?= $title?></legend>
+                            <div class="form-row align-items-center mb-3">
+                                <div class="col-6">
+                                    <label for="selectCategorie">Categorie </label>
+                                    <select id="selectCategorie" name="category" class="custom-select <?= !empty($errors['category'])? 'is-invalid' : '' ?>">
+                                        <option>Choisir une catégorie</option>
+                                        <?php foreach($dataCategorie as $dataCategories) : ?>
+                                            <option value="<?=  htmlspecialchars($dataCategories['id'])?>" <?= $dataCategories['id'] == $category_id ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars($dataCategories['name']) ?>
+                                            </option>
+                                        <?php endforeach;?>
+                                    </select>
+                                    <?php if (!empty($errors['category'])) : ?>
+                                    <div class="invalid-feedback"> <?= $errors['category'] ?> </div>
+                                    <?php endif?>
+                                </div>
+                            </div>
+
+                            <div class="col-6 ">
+                                <label for="selectAuthor">Auteur </label>
+                                <select id="selectAuthor"name="author" class="custom-select <?= !empty($errors['author'])? 'is-invalid' : '' ?>">
+                                    <?php foreach($dataAuthor as $dataAuthors) : ?>
+                                        <option>Choisir un auteur</option>
+                                    <option  value="<?= htmlspecialchars($dataAuthors['id'])?>">
+                                        <?= htmlspecialchars($dataAuthors['firstname'])?>
+                                        <?= htmlspecialchars($dataAuthors['lastname']) ?>
+                                    </option>
+                                    <?php endforeach;?>
+                                </select>
+                                <?php if (!empty($errors['author'])) : ?>
+                                    <div class="invalid-feedback"> <?= $errors['author'] ?></div>
+                                <?php endif; ?>
+                            </div>
+
+
+                            <div class="form-group">
+                                    <label for="titlePost">Titre de l'article</label>
+                                    <input id="title" type="text" name="title" class="form-control <?= !empty($errors['postTitle'])? 'is-invalid' : '' ?>" required value="<?= $postTitle ?>" placeholder="Saisir un titre évocateur" >
+                                    <?php if(!empty($errors['postTitle'])) : ?>
+                                        <div class="invalid-feedback"><?= $errors['postTitle'] ?>"</div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content"> Texte de l'article </label>
+                                    <textarea  id="content" name="content" class="form-control  <?= !empty($errors['content']) ? 'is-invalid' : ''; ?>" spellcheck="true" rows="8"> </textarea>
+                                    <div class="invalid-feedback"><?= $errors['content'] ?></div>
+                                </div>
+
+                            <button type="submit"  name="ok" class="btn  btn-lg btn-success m-2"  >Ajouter</button>
+                            <button type="submit"  href="admin.php" class="btn btn-lg btn-warning m-2" >Annuler</button>
+                        </fieldset>
+                </form>
+            </div>
+        </section>
+    </div>
+</main>

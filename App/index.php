@@ -10,6 +10,7 @@ App\Autoloader::register();
 
 
 $post = new PostManagerPOO();
+//affichage page Home
 $posts = $post->getListPost();
 
 //Affichage
@@ -17,3 +18,4 @@ $title ="Accueil du blog";
 $template = "view/home";
 
 require ('view/layout.phtml');
+

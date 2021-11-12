@@ -26,7 +26,7 @@ namespace App\config;
                 $this->query("SET NAMES 'utf8'");
                 $this->query("SET lc_time_names = 'fr_FR';");
 
-                echo 'Connection etablie';
+                //echo 'Connection etablie';
 
 
             } catch(PDOException $e) {
